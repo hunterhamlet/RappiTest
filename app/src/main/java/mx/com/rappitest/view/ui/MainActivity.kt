@@ -1,7 +1,8 @@
-package mx.com.rappitest
+package mx.com.rappitest.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import mx.com.rappitest.R
 
 class MainActivity : AppCompatActivity() {
 
