@@ -32,13 +32,25 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitLibsVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitLibsVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpsVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibsVersion"
 
     //material
     implementation "com.google.android.material:material:$materialVersion"
 
+    //livedata and viewmodel
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //rxjava
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
 
 
     //test
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
