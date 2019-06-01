@@ -6,16 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_movies.*
 
 import mx.com.rappitest.R
-import mx.com.rappitest.model.Movie
 import mx.com.rappitest.view.adapter.MoviesAdapter
+import mx.com.rappitest.viewmodel.UpcomingViewModel
 
 class UpcomingFragment : Fragment() {
 
+//val
 
+ //var
+ lateinit var viewModel : UpcomingViewModel
+
+ //override fun
  override fun onCreateView(
   inflater: LayoutInflater, container: ViewGroup?,
   savedInstanceState: Bundle?): View? {
@@ -25,12 +30,21 @@ class UpcomingFragment : Fragment() {
 
  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
   super.onViewCreated(view, savedInstanceState)
-  var listOfMovies =
-   mutableListOf(Movie("el libro de la selva"), Movie("john wick"), Movie("tarzan"),
-    Movie("el libro de la selva"), Movie("john wick"), Movie("tarzan"))
 
-  //test
-  listMovies.adapter = MoviesAdapter(listOfMovies)
+  //initViewModel
+  viewModel = ViewModelProviders.of(this@UpcomingFragment).get(UpcomingViewModel::class.java)
+  viewModel.initialize(this@UpcomingFragment)
+
+  //search
+  searchBtn.setOnClickListener {
+   viewModel.searchMovies(searchMovie.text.toString())
+  }
+
+ }
+
+ override fun onPause() {
+  super.onPause()
+  viewModel.stop()
  }
 
 }

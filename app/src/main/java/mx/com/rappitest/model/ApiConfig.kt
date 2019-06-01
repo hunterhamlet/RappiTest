@@ -6,15 +6,24 @@ class ApiConfig {
 
  data class Response(
   @SerializedName("images")
-  var images : Images
+  val images : Images
  )
 
  data class Images(
   @SerializedName("secure_base_url")
-  var baserUrl : String,
+  val baserUrl : String,
 
   @SerializedName("poster_sizes")
-  var posterSize : List<String>
- )
+  val posterSize : List<String>
+ ){
+  //getBaseUrlWhitPosterSize
+  fun getBaseUrlWhitPosterSize() : String{
+   return if(posterSize.contains("w500")){
+    baserUrl + "w500"
+   }else{
+    baserUrl + "w342"
+   }
+  }
+ }
 
 }

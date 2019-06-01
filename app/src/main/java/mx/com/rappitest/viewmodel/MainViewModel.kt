@@ -1,6 +1,5 @@
 package mx.com.rappitest.viewmodel
 
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,27 +25,20 @@ class MainViewModel : ViewModel(){
   main.categoryBottomMenu.setOnNavigationItemSelectedListener {
    when(it.itemId){
     R.id.moviesPopulate -> {
-     showMessage("Populate")
      changeFragment(PopulatedFragment())
      return@setOnNavigationItemSelectedListener true
     }
     R.id.moviesTopRated ->{
-     showMessage("TopRated")
      changeFragment(TopRatedFragment())
      return@setOnNavigationItemSelectedListener true
     }
     R.id.moviesUpComing -> {
-     showMessage("Upcoming")
      changeFragment(UpcomingFragment())
      return@setOnNavigationItemSelectedListener true
     }
     else -> true
    }
   }
- }
-
- private fun showMessage(msg : String){
-  Toast.makeText(main, msg, Toast.LENGTH_SHORT).show()
  }
 
  private fun changeFragment(fragment : Fragment){
@@ -63,6 +55,5 @@ class MainViewModel : ViewModel(){
    .replace(R.id.contentFragments, PopulatedFragment())
    .commitAllowingStateLoss()
  }
-
 
 }

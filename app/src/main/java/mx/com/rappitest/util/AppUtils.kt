@@ -1,6 +1,7 @@
 package mx.com.rappitest.util
 
 //utils
+const val TAG = "JHMM"
 //const val AUTHORIZATION_STRING = "Authorization"
 const val AUTHORIZATION_STRING = "api_key"
 //const val AUTHORIZATION_API_KEY = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZmNiOTkxNTFhNWY0ZTY0NWE4YzQ4MTQ3NWY3OWUwMCIsInN1YiI6IjVjZjA4M2U2MGUwYTI2NzBjZWM5OTg0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wpb02_DvOaqH2ZE4jD-dEPpBLabVd9srjI49bwLxrxU"

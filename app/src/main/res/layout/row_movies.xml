@@ -39,11 +39,22 @@
    />
 
   <androidx.appcompat.widget.AppCompatTextView
-   android:id="@+id/yearMovie"
+   android:id="@+id/originalTitleMovie"
    android:layout_width="0dp"
    android:layout_height="wrap_content"
    app:layout_constraintStart_toEndOf="@id/imageMovie"
    app:layout_constraintTop_toBottomOf="@id/titleMovie"
+   app:layout_constraintEnd_toEndOf="parent"
+   android:text="Original Title: john wick"
+   style="@style/textCardStyle"
+   />
+
+  <androidx.appcompat.widget.AppCompatTextView
+   android:id="@+id/yearMovie"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toEndOf="@id/imageMovie"
+   app:layout_constraintTop_toBottomOf="@id/originalTitleMovie"
    app:layout_constraintEnd_toEndOf="parent"
    android:text="Año : 2009"
    style="@style/textCardStyle"
@@ -59,8 +70,8 @@
    android:text="Actores: Keanu Revees"
    android:layout_marginStart="10dp"
    style="@style/textCardStyle"
+   android:visibility="gone"
    />
-
 
  </androidx.constraintlayout.widget.ConstraintLayout>
 

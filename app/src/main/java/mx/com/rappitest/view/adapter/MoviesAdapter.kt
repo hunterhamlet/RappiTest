@@ -1,15 +1,18 @@
 package mx.com.rappitest.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.row_movies.view.*
 import mx.com.rappitest.R
-import mx.com.rappitest.model.Movie
+import mx.com.rappitest.model.Movies
+import mx.com.rappitest.util.TAG
 
-class MoviesAdapter(val listMovies : MutableList<Movie>) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(val listMovies : MutableList<Movies.Movie>) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
  //fun override
  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -29,8 +32,16 @@ class MoviesAdapter(val listMovies : MutableList<Movie>) : RecyclerView.Adapter<
  class MoviesViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
   //onBindView
-  fun bindView(movie : Movie){
-   itemView.titleMovie.text = movie.title
+  fun bindView(movie : Movies.Movie){
+   itemView.titleMovie.text = "Titlte : ${movie.title}"
+   itemView.originalTitleMovie.text =  "Original title: ${movie.originalTitle}"
+   itemView.yearMovie.text = "Date: ${movie.releaseDate}"
+   Glide.with(itemView)
+    .load(movie.imagePath(movie.posterPath))
+    .centerCrop()
+    .placeholder(R.drawable.ic_popcorn)
+    .into(itemView.imageMovie)
+
    itemView.movieContent.setOnClickListener {
     Toast.makeText(itemView.context, "title: ${movie.title}", Toast.LENGTH_SHORT).show()
    }

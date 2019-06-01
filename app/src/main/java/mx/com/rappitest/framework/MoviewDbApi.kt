@@ -25,9 +25,9 @@ interface MoviewDbApi {
  @GET(GET_POPULATE)
  fun getPopulateMovies(@QueryMap headers: Map<String,String>) : Observable<Movies.populateResponse>
  @GET(GET_TOP_RATED)
- fun getTopRatedMovies(@QueryMap headers: Map<String,String>)
+ fun getTopRatedMovies(@QueryMap headers: Map<String,String>) : Observable<Movies.topRatedResponse>
  @GET(GET_UPCOMING)
- fun getUpcommingMovies(@QueryMap headers: Map<String,String>)
+ fun getUpcommingMovies(@QueryMap headers: Map<String,String>) : Observable<Movies.upcomingResponse>
 
  companion object{
   fun createApiClient() : MoviewDbApi{
