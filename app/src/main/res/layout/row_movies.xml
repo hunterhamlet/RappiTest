@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+ android:id="@+id/movieContent"
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ android:orientation="vertical"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ app:cardCornerRadius="5dp"
+ android:elevation="5dp"
+ android:layout_margin="5dp"
+ >
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:padding="10dp"
+  >
+
+  <ImageView
+   android:id="@+id/imageMovie"
+   android:layout_width="80dp"
+   android:layout_height="120dp"
+   app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toTopOf="parent"
+   app:layout_constraintBottom_toBottomOf="parent"
+   android:src="@drawable/image_movie"
+   />
+
+  <androidx.appcompat.widget.AppCompatTextView
+   android:id="@+id/titleMovie"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toEndOf="@id/imageMovie"
+   app:layout_constraintTop_toTopOf="@id/imageMovie"
+   app:layout_constraintEnd_toEndOf="parent"
+   android:text="Titulo: John Wick"
+   style="@style/textCardStyle"
+   />
+
+  <androidx.appcompat.widget.AppCompatTextView
+   android:id="@+id/originalTitleMovie"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toEndOf="@id/imageMovie"
+   app:layout_constraintTop_toBottomOf="@id/titleMovie"
+   app:layout_constraintEnd_toEndOf="parent"
+   android:text="Original Title: john wick"
+   style="@style/textCardStyle"
+   />
+
+  <androidx.appcompat.widget.AppCompatTextView
+   android:id="@+id/yearMovie"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toEndOf="@id/imageMovie"
+   app:layout_constraintTop_toBottomOf="@id/originalTitleMovie"
+   app:layout_constraintEnd_toEndOf="parent"
+   android:text="Año : 2009"
+   style="@style/textCardStyle"
+   />
+
+  <androidx.appcompat.widget.AppCompatTextView
+   android:id="@+id/repartMovie"
+   android:layout_width="0dp"
+   android:layout_height="wrap_content"
+   app:layout_constraintStart_toEndOf="@id/imageMovie"
+   app:layout_constraintTop_toBottomOf="@id/yearMovie"
+   app:layout_constraintEnd_toEndOf="parent"
+   android:text="Actores: Keanu Revees"
+   android:layout_marginStart="10dp"
+   style="@style/textCardStyle"
+   android:visibility="gone"
+   />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
