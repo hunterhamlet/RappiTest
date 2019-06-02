@@ -3,7 +3,10 @@ package mx.com.rappitest.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -11,7 +14,11 @@ import kotlinx.android.synthetic.main.row_movies.view.*
 import mx.com.rappitest.R
 import mx.com.rappitest.model.Film
 
-class MoviesAdapter(val listMovies : MutableList<Film>) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(private val listMovies : MutableList<Film>) :
+ RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+
+ //var
+
 
  //fun override
  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -26,6 +33,17 @@ class MoviesAdapter(val listMovies : MutableList<Film>) : RecyclerView.Adapter<M
  override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
   holder.bindView(listMovies[position])
  }
+
+ //gral fun
+ fun addItems(listMovies: MutableList<Film>){
+  val callBack = FilmDiffCallBack(this.listMovies, listMovies)
+  val diffResult = DiffUtil.calculateDiff(callBack)
+  this.listMovies.clear()
+  this.listMovies.addAll(listMovies)
+  diffResult.dispatchUpdatesTo(this)
+ }
+
+
 
  //inner class
  class MoviesViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -48,4 +66,31 @@ class MoviesAdapter(val listMovies : MutableList<Film>) : RecyclerView.Adapter<M
   }
 
  }
+
+ class FilmDiffCallBack(private val oldList : MutableList<Film>, private val newList : MutableList<Film>)
+  : DiffUtil.Callback() {
+
+
+  override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+   return oldList[oldItemPosition].id == newList[newItemPosition].id
+  }
+
+  override fun getOldListSize(): Int {
+   return oldList.size
+  }
+
+  override fun getNewListSize(): Int {
+   return newList.size
+  }
+
+  override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+   val oldFilm = oldList[oldItemPosition]
+   val newFilm = newList[newItemPosition]
+   return oldFilm.id == newFilm.id
+  }
+
+ }
+
+
+
 }

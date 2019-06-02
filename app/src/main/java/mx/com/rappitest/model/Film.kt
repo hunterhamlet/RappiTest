@@ -2,12 +2,14 @@ package mx.com.rappitest.model
 
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 
 //movieClass
 open class Film : RealmObject {
 
  //attributes
+ @PrimaryKey
  @SerializedName("id")
  var id : Int? = null
 
@@ -27,8 +29,15 @@ open class Film : RealmObject {
  var releaseDate : String? = null
 
 
+ var type : String? = null
+
+
  //constructor
  constructor()
+
+ constructor(title: String?) {
+  this.title = title
+ }
 
  constructor(
   id: Int?,
@@ -36,18 +45,16 @@ open class Film : RealmObject {
   posterPath: String?,
   originalTitle: String?,
   overview: String?,
-  releaseDate: String?
- ) {
+  releaseDate: String?,
+  type: String?
+ ) : super() {
   this.id = id
   this.title = title
   this.posterPath = posterPath
   this.originalTitle = originalTitle
   this.overview = overview
   this.releaseDate = releaseDate
- }
-
- constructor(title: String?) {
-  this.title = title
+  this.type = type
  }
 
 
@@ -62,9 +69,11 @@ open class Film : RealmObject {
   return "Film(id=$id, " +
      "title=$title, " +
      "posterPath=$posterPath, " +
-     "originalTitle=$originalTitle, " +
-     "overview=$overview, " +
-     "releaseDate=$releaseDate)"
+     "originalTitle=$originalTitle," +
+     " overview=$overview," +
+     " releaseDate=$releaseDate, " +
+     "type=$type)"
  }
+
 
 }

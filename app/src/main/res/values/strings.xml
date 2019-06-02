@@ -7,4 +7,6 @@
  <!-- header stringa -->
  <string name="keyMoviesDBHeader"></string>
  <string name="contenTypeHeader">Content-Type : application/json;charset=utf-8</string>
+ <string name="filmTitleText">Titulo de pelicula</string>
+ <string name="searchTxt">Buscar</string>
 </resources>
