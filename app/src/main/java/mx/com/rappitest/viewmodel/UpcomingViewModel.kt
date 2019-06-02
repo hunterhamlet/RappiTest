@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_movies.*
 import mx.com.rappitest.framework.MoviewDbApi
-import mx.com.rappitest.model.Movies
+import mx.com.rappitest.model.Film
 import mx.com.rappitest.util.apiHeadersMap
 import mx.com.rappitest.view.adapter.MoviesAdapter
 import mx.com.rappitest.view.ui.UpcomingFragment
@@ -48,14 +48,17 @@ class UpcomingViewModel : ViewModel() {
    .subscribe({
      response -> showListUpcoming(response.results)
    }, {
-
+     error -> requestError(error)
    })
  }
 
- private fun showListUpcoming(moviesList : MutableList<Movies.Movie>){
+ private fun showListUpcoming(filmList : MutableList<Film>){
   fragment.progressListUpdate.visibility = View.GONE
-  fragment.listMovies.adapter = MoviesAdapter(moviesList)
+  fragment.listMovies.adapter = MoviesAdapter(filmList)
  }
 
+ private fun requestError(error : Throwable){
+  error.printStackTrace()
+ }
 
 }

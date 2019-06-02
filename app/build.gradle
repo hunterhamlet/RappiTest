@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 28
@@ -47,6 +49,9 @@ dependencies {
 
     //rxjava
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+
+    //realmExtension
+    implementation "com.github.vicpinm:krealmextensions:$realmExtVersion"
 
 
     //test

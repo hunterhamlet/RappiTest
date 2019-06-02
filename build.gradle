@@ -29,6 +29,12 @@ buildscript {
         //rxjava
         rxandroidVersion = '2.1.1'
 
+        //realmExt
+        realmExtVersion = '2.5.0'
+
+        //realm
+        realmVersion = "5.11.0"
+
     }
 
     //repos
@@ -42,6 +48,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "io.realm:realm-gradle-plugin:$realmVersion"
     }
 
 
