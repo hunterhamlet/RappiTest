@@ -1,0 +1,12 @@
+<resources>
+ <string name="app_name">TopMovies</string>
+ <string name="populateString">Popular</string>
+ <string name="topRatedString">Valoradas</string>
+ <string name="upComingString">Proximamente</string>
+
+ <!-- header stringa -->
+ <string name="keyMoviesDBHeader"></string>
+ <string name="contenTypeHeader">Content-Type : application/json;charset=utf-8</string>
+ <string name="filmTitleText">Titulo de pelicula</string>
+ <string name="searchTxt">Buscar</string>
+</resources>

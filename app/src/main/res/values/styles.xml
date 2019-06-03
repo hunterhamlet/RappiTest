@@ -1,0 +1,38 @@
+<resources>
+
+ <!-- Base application theme. -->
+ <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+  <item name="colorPrimary">@color/colorPrimary</item>
+  <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+  <item name="colorAccent">@color/colorAccent</item>
+ </style>
+
+
+<!-- splash theme -->
+ <style name="splashTheme" parent="AppTheme">
+  <item name="android:windowBackground">@drawable/splash_screen</item>
+  <item name="android:statusBarColor">@color/colorPrimary</item>
+  <item name="android:navigationBarColor">@color/colorPrimary</item>
+  <item name="android:windowLightStatusBar">true</item>
+  <item name="android:windowLightNavigationBar">true</item>
+ </style>
+
+ <!-- main theme -->
+ <style name="mainTheme" parent="AppTheme">
+  <item name="android:windowBackground">@color/backgroundActivity</item>
+  <item name="android:statusBarColor">@color/backgroundActivity</item>
+  <item name="android:navigationBarColor">@color/backgroundActivity</item>
+  <item name="android:windowLightNavigationBar">true </item>
+  <item name="android:windowLightStatusBar">true</item>
+ </style>
+
+ <!-- text card style -->
+ <style name="textCardStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+  <item name="android:textSize">20sp</item>
+  <item name="android:textColor">@color/textColor</item>
+  <item name="android:fontFamily">@font/roboto_regular</item>
+  <item name="android:layout_marginStart">10dp</item>
+
+ </style>
+
+</resources>
