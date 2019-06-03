@@ -8,6 +8,18 @@ import mx.com.rappitest.util.TOP_RATED
 import mx.com.rappitest.util.UPCOMING
 
 class FilmRepository : IFilmRepository {
+ override fun searchAllByPopulated(): List<Film> {
+  return Film().query { equalTo("type", POPULATED) }
+ }
+
+ override fun searchAllByTopRated(): List<Film> {
+  return Film().query { equalTo("type", TOP_RATED) }
+ }
+
+ override fun searchAllByUpcoming(): List<Film> {
+  return Film().query { equalTo("type", UPCOMING) }
+ }
+
  override fun searchMovieByTitleInPopulate(movieTitle: String): List<Film> {
   return Film().query { contains("title", movieTitle,Case.INSENSITIVE)
    .equalTo("type", POPULATED) }

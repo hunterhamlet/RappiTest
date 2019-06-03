@@ -11,7 +11,7 @@ class RappiApp :Application() {
  override fun onCreate() {
   super.onCreate()
   Realm.init(this)
-
+  /*
   val moviesConfig = RealmConfiguration.Builder()
    .name("movies_db")
    .schemaVersion(1)
@@ -20,8 +20,7 @@ class RappiApp :Application() {
   Realm.deleteRealm(Realm.getDefaultConfiguration())
   Realm.deleteRealm(moviesConfig)
   RealmConfigStore.initModule(Film::class.java, moviesConfig)
-
-
+  */
 
  }
 }

@@ -14,6 +14,7 @@ import mx.com.rappitest.model.Film
 import mx.com.rappitest.util.TAG
 import mx.com.rappitest.util.TOP_RATED
 import mx.com.rappitest.util.apiHeadersMap
+import mx.com.rappitest.util.checkConnectivity
 import mx.com.rappitest.view.adapter.MoviesAdapter
 import mx.com.rappitest.view.ui.TopRatedFragment
 
@@ -39,11 +40,9 @@ class TopRatedViewModel : ViewModel() {
 
  //stop
  fun stop(){
-  disposable.dispose()
- }
-
- fun searchMovies(searchWord : String){
-  getQueryList(searchWord)
+  if(checkConnectivity(fragment.context)){
+   disposable.dispose()
+  }
  }
 
  fun filterMovie(title : String){
@@ -54,14 +53,19 @@ class TopRatedViewModel : ViewModel() {
  }
 
  private fun getPopulatedMovies(){
-  disposable = moviesApi.getTopRatedMovies(apiHeadersMap())
-   .subscribeOn(Schedulers.io())
-   .observeOn(AndroidSchedulers.mainThread())
-   .subscribe({
-     response -> showListTopRated(response.results)
-   }, {
-    error -> requestError(error)
-   })
+  if(checkConnectivity(fragment.context)){
+   disposable = moviesApi.getTopRatedMovies(apiHeadersMap())
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe({
+      response -> showListTopRated(response.results)
+    }, {
+      error -> requestError(error)
+    })
+  }else{
+   showListTopRated(FilmRepository().searchAllByPopulated().toMutableList())
+  }
+
  }
 
  private fun showListTopRated(filmList : MutableList<Film>){
@@ -81,10 +85,6 @@ class TopRatedViewModel : ViewModel() {
   filmList.forEach {
    it.type = TOP_RATED
   }
- }
-
- private fun getQueryList(query: String){
-  Log.d(TAG,"movie: ${FilmRepository().searchAll()}")
  }
 
 }

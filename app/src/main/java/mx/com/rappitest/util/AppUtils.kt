@@ -1,5 +1,8 @@
 package mx.com.rappitest.util
 
+import android.content.Context
+import android.net.ConnectivityManager
+
 //utils
 const val TAG = "JHMM"
 //const val AUTHORIZATION_STRING = "Authorization"
@@ -24,4 +27,10 @@ fun apiHeadersMap() : Map<String, String>{
   Pair(AUTHORIZATION_STRING, AUTHORIZATION_API_KEY),
   Pair(CONTENT_TYPE_STRING, CONTENT_TYPE_VALUE)
   )
+}
+
+fun checkConnectivity(context: Context?):Boolean{
+ val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+ val networkInfo = cm.activeNetworkInfo
+ return networkInfo!= null && networkInfo.isConnected
 }

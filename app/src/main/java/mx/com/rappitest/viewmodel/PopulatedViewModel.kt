@@ -13,6 +13,7 @@ import mx.com.rappitest.model.Film
 import mx.com.rappitest.util.POPULATED
 import mx.com.rappitest.util.TAG
 import mx.com.rappitest.util.apiHeadersMap
+import mx.com.rappitest.util.checkConnectivity
 import mx.com.rappitest.view.adapter.MoviesAdapter
 import mx.com.rappitest.view.ui.PopulatedFragment
 
@@ -38,7 +39,10 @@ class PopulatedViewModel : ViewModel() {
 
  //stop
  fun stop(){
-  disposable.dispose()
+  if(checkConnectivity(fragment.context)){
+   disposable.dispose()
+  }
+
  }
 
  fun filterMovie(title : String){
@@ -49,14 +53,19 @@ class PopulatedViewModel : ViewModel() {
  }
 
  private fun getPopulatedMovies(){
-  disposable = moviesApi.getPopulateMovies(apiHeadersMap())
-   .subscribeOn(Schedulers.io())
-   .observeOn(AndroidSchedulers.mainThread())
-   .subscribe({
-     response -> showListPopulated(response.results)
-   }, {
-     error -> requestError(error)
+  if(checkConnectivity(fragment.context)){
+   disposable = moviesApi.getPopulateMovies(apiHeadersMap())
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe({
+      response -> showListPopulated(response.results)
+    }, {
+      error -> requestError(error)
     })
+  }else{
+   showListPopulated(FilmRepository().searchAllByPopulated().toMutableList())
+  }
+
  }
 
  private fun showListPopulated(filmList : MutableList<Film>){
