@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.row_movies.view.*
 import mx.com.rappitest.R
 import mx.com.rappitest.model.Film
 
-class MoviesAdapter(private val listMovies : MutableList<Film>) :
+class MoviesAdapter(private var listMovies : MutableList<Film>) :
  RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
  //var
@@ -43,6 +43,10 @@ class MoviesAdapter(private val listMovies : MutableList<Film>) :
   diffResult.dispatchUpdatesTo(this)
  }
 
+ fun filteredList(filteredList : MutableList<Film>){
+  listMovies = filteredList
+  notifyDataSetChanged()
+ }
 
 
  //inner class

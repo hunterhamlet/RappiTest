@@ -27,6 +27,8 @@ class TopRatedViewModel : ViewModel() {
  //var
  private lateinit var  fragment: TopRatedFragment
  private lateinit var disposable: Disposable
+ private lateinit var moviesAdapter : MoviesAdapter
+ private lateinit var listOfFilms : MutableList<Film>
 
 
  //init
@@ -44,6 +46,13 @@ class TopRatedViewModel : ViewModel() {
   getQueryList(searchWord)
  }
 
+ fun filterMovie(title : String){
+  val listFilteredFilm =
+   listOfFilms.filter { film -> film.title?.toLowerCase()!!.contains(title.toLowerCase())}
+  moviesAdapter.filteredList(listFilteredFilm.toMutableList())
+
+ }
+
  private fun getPopulatedMovies(){
   disposable = moviesApi.getTopRatedMovies(apiHeadersMap())
    .subscribeOn(Schedulers.io())
@@ -57,9 +66,11 @@ class TopRatedViewModel : ViewModel() {
 
  private fun showListTopRated(filmList : MutableList<Film>){
   setTypeFilm(filmList)
-  fragment.progressListUpdate.visibility = View.GONE
-  fragment.listMovies.adapter = MoviesAdapter(filmList)
+  listOfFilms = filmList
+  moviesAdapter = MoviesAdapter(filmList)
+  fragment.listMovies.adapter = moviesAdapter
   FilmRepository().addListOfMovies(filmList)
+  fragment.progressListUpdate.visibility = View.GONE
  }
 
  private fun requestError(error : Throwable){
