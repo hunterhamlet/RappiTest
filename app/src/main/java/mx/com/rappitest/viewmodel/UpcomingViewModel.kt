@@ -1,8 +1,6 @@
 package mx.com.rappitest.viewmodel
 
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -11,9 +9,9 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import mx.com.rappitest.framework.FilmRepository
 import mx.com.rappitest.framework.MoviewDbApi
 import mx.com.rappitest.model.Film
-import mx.com.rappitest.util.TAG
 import mx.com.rappitest.util.UPCOMING
 import mx.com.rappitest.util.apiHeadersMap
+import mx.com.rappitest.util.checkConnectivity
 import mx.com.rappitest.view.adapter.MoviesAdapter
 import mx.com.rappitest.view.ui.UpcomingFragment
 
@@ -39,7 +37,9 @@ class UpcomingViewModel : ViewModel() {
 
  //stop
  fun stop(){
-  disposable.dispose()
+  if(checkConnectivity(fragment.context)){
+   disposable.dispose()
+  }
  }
 
 
@@ -51,14 +51,19 @@ class UpcomingViewModel : ViewModel() {
  }
 
  private fun getPopulatedMovies(){
-  disposable = moviesApi.getUpcommingMovies(apiHeadersMap())
-   .subscribeOn(Schedulers.io())
-   .observeOn(AndroidSchedulers.mainThread())
-   .subscribe({
-     response -> showListUpcoming(response.results)
-   }, {
-     error -> requestError(error)
-   })
+  if(checkConnectivity(fragment.context)){
+   disposable = moviesApi.getUpcommingMovies(apiHeadersMap())
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe({
+      response -> showListUpcoming(response.results)
+    }, {
+      error -> requestError(error)
+    })
+  }else{
+   showListUpcoming(FilmRepository().searchAllByPopulated().toMutableList())
+  }
+
  }
 
  private fun showListUpcoming(filmList : MutableList<Film>){

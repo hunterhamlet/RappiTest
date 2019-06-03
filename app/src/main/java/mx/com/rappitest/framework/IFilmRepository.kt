@@ -12,6 +12,9 @@ interface IFilmRepository {
  fun searchMovieByTitleInTopRated(movieTitle : String) : List<Film>
  fun searchMovieByTitleInUpcoming(movieTitle : String) : List<Film>
  fun searchAll() : List<Film>
+ fun searchAllByPopulated() : List<Film>
+ fun searchAllByTopRated() : List<Film>
+ fun searchAllByUpcoming() : List<Film>
  fun deleteAll()
 
 }
