@@ -1,23 +1,23 @@
 package mx.com.rappitest.view.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_movies.*
 
 import mx.com.rappitest.R
-import mx.com.rappitest.framework.MoviewDbApi
-import mx.com.rappitest.model.Movies
-import mx.com.rappitest.util.apiHeadersMap
-import mx.com.rappitest.view.adapter.MoviesAdapter
+import mx.com.rappitest.framework.FilmRepository
+import mx.com.rappitest.util.TAG
 import mx.com.rappitest.viewmodel.PopulatedViewModel
+import java.util.*
 
 
 class PopulatedFragment : Fragment() {
@@ -41,10 +41,14 @@ class PopulatedFragment : Fragment() {
   viewModel = ViewModelProviders.of(this@PopulatedFragment).get(PopulatedViewModel::class.java)
   viewModel.initialize(this@PopulatedFragment)
 
-  //search
-  searchBtn.setOnClickListener {
-   viewModel.searchMovies(searchMovie.text.toString())
-  }
+  searchMovie.addTextChangedListener(object : TextWatcher{
+   override fun afterTextChanged(s: Editable?) { viewModel.filterMovie(s.toString()) }
+
+   override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+   override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+  })
 
  }
 

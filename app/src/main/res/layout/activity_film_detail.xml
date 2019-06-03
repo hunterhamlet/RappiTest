@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".view.ui.FilmDetailActivity"
+ >
+
+ <com.google.android.material.card.MaterialCardView
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:cardCornerRadius="20dp"
+  android:backgroundTint="@android:color/white"
+  android:layout_margin="10dp"
+  >
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:padding="10dp"
+   >
+
+   <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/imageFilm"
+    android:layout_width="220dp"
+    android:layout_height="250dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:src="@drawable/image_movie"
+    />
+
+   <TextView
+    android:id="@+id/titleText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/imageFilm"
+    android:layout_marginTop="10dp"
+    android:text="John Wick"
+    android:gravity="center"
+    android:textSize="24sp"
+    />
+
+   <TextView
+    android:id="@+id/originalTitleMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/titleText"
+    android:layout_marginTop="10dp"
+    android:text="Original title: Jonh wick"
+    android:textSize="22sp"
+    />
+
+   <TextView
+    android:id="@+id/relaseDateMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/originalTitleMovie"
+    android:layout_marginTop="10dp"
+    android:text="Release date: 2019-05-22"
+    android:textSize="22sp"
+    />
+
+   <TextView
+    android:id="@+id/voteCountMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/relaseDateMovie"
+    android:layout_marginTop="10dp"
+    android:text="Vote count: 985"
+    android:textSize="22sp"
+    />
+
+   <TextView
+    android:id="@+id/popularityMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/voteCountMovie"
+    android:layout_marginTop="10dp"
+    android:text="Popularity: 499.517"
+    android:textSize="22sp"
+    />
+
+   <TextView
+    android:id="@+id/voteMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/popularityMovie"
+    android:layout_marginTop="10dp"
+    android:text="Vote Average"
+    android:gravity="center"
+    android:textSize="22sp"
+    />
+
+   <me.zhanghai.android.materialratingbar.MaterialRatingBar
+    android:id="@+id/ratingVoteMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/voteMovie"
+    style="@style/Widget.MaterialRatingBar.RatingBar"
+    android:layout_marginTop="20dp"
+    />
+
+   <View
+    android:id="@+id/separatorView"
+    android:layout_width="0dp"
+    android:layout_height="2dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/ratingVoteMovie"
+    android:layout_marginTop="20dp"
+    android:background="@color/colorPrimary"
+    />
+
+   <TextView
+    android:id="@+id/overviewTitleMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/separatorView"
+    android:layout_marginTop="10dp"
+    android:text="Overview"
+    android:gravity="center"
+    android:textSize="22sp"
+    />
+
+   <TextView
+    android:id="@+id/overviewMovie"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/overviewTitleMovie"
+    android:layout_marginTop="10dp"
+    android:text="Overview"
+    android:gravity="center"
+    android:textSize="22sp"
+    />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+ </com.google.android.material.card.MaterialCardView>
+
+</androidx.core.widget.NestedScrollView>

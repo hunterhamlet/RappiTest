@@ -13,6 +13,10 @@ const val API_CONFIG = "configuration"
 const val GET_POPULATE = "movie/popular"
 const val GET_TOP_RATED = "movie/top_rated"
 const val GET_UPCOMING = "movie/upcoming"
+const val POPULATED = "populated"
+const val TOP_RATED = "top_rated"
+const val UPCOMING = "upcoming"
+const val FILM_ID = "film_id"
 
 //fun
 fun apiHeadersMap() : Map<String, String>{
