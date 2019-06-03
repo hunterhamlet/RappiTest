@@ -1,5 +1,6 @@
 package mx.com.rappitest.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import mx.com.rappitest.framework.FilmRepository
 import mx.com.rappitest.framework.MoviewDbApi
 import mx.com.rappitest.model.Film
+import mx.com.rappitest.util.TAG
 import mx.com.rappitest.util.UPCOMING
 import mx.com.rappitest.util.apiHeadersMap
 import mx.com.rappitest.util.checkConnectivity
@@ -61,7 +63,8 @@ class UpcomingViewModel : ViewModel() {
       error -> requestError(error)
     })
   }else{
-   showListUpcoming(FilmRepository().searchAllByPopulated().toMutableList())
+   //Log.d(TAG, "size : ${FilmRepository().searchAll().size}")
+   showListUpcoming(FilmRepository().searchAllByUpcoming().toMutableList())
   }
 
  }

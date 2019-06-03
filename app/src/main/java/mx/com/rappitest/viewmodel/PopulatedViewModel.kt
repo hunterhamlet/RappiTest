@@ -63,6 +63,7 @@ class PopulatedViewModel : ViewModel() {
       error -> requestError(error)
     })
   }else{
+   //Log.d(TAG, "size : ${FilmRepository().searchAll().size}")
    showListPopulated(FilmRepository().searchAllByPopulated().toMutableList())
   }
 

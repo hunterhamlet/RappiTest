@@ -63,7 +63,8 @@ class TopRatedViewModel : ViewModel() {
       error -> requestError(error)
     })
   }else{
-   showListTopRated(FilmRepository().searchAllByPopulated().toMutableList())
+   //Log.d(TAG, "size : ${FilmRepository().searchAll().size}")
+   showListTopRated(FilmRepository().searchAllByTopRated().toMutableList())
   }
 
  }
