@@ -28,16 +28,20 @@ open class Film : RealmObject {
  @SerializedName("release_date")
  var releaseDate : String? = null
 
+ @SerializedName("vote_count")
+ var voteCount : Int? = null
+
+ @SerializedName("vote_average")
+ var voteAverage : Float? = null
+
+ @SerializedName("popularity")
+ var popularity : Float? = null
 
  var type : String? = null
 
 
  //constructor
  constructor()
-
- constructor(title: String?) {
-  this.title = title
- }
 
  constructor(
   id: Int?,
@@ -46,6 +50,9 @@ open class Film : RealmObject {
   originalTitle: String?,
   overview: String?,
   releaseDate: String?,
+  voteCount: Int?,
+  voteAverage: Float?,
+  popularity: Float?,
   type: String?
  ) : super() {
   this.id = id
@@ -54,6 +61,9 @@ open class Film : RealmObject {
   this.originalTitle = originalTitle
   this.overview = overview
   this.releaseDate = releaseDate
+  this.voteCount = voteCount
+  this.voteAverage = voteAverage
+  this.popularity = popularity
   this.type = type
  }
 
@@ -69,10 +79,12 @@ open class Film : RealmObject {
   return "Film(id=$id, " +
      "title=$title, " +
      "posterPath=$posterPath, " +
-     "originalTitle=$originalTitle," +
-     " overview=$overview," +
-     " releaseDate=$releaseDate, " +
-     "type=$type)"
+     "originalTitle=$originalTitle, " +
+     "overview=$overview, " +
+     "releaseDate=$releaseDate, " +
+     "voteCount=$voteCount, " +
+     "voteAverage=$voteAverage, " +
+     "popularity=$popularity, "
  }
 
 

@@ -33,7 +33,10 @@ buildscript {
         realmExtVersion = '2.5.0'
 
         //realm
-        realmVersion = "5.11.0"
+        realmVersion = '5.11.0'
+
+        //reatingBar
+        ratingBarVersion = '1.3.2'
 
     }
 

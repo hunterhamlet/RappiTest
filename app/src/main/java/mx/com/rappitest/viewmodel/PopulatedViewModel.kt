@@ -41,17 +41,12 @@ class PopulatedViewModel : ViewModel() {
   disposable.dispose()
  }
 
- fun searchMovies(searchWord : String){
-  getQueryList(searchWord)
- }
-
  fun filterMovie(title : String){
   val listFilteredFilm =
    listOfFilms.filter { film -> film.title?.toLowerCase()!!.contains(title.toLowerCase())}
   moviesAdapter.filteredList(listFilteredFilm.toMutableList())
 
  }
-
 
  private fun getPopulatedMovies(){
   disposable = moviesApi.getPopulateMovies(apiHeadersMap())
@@ -67,7 +62,7 @@ class PopulatedViewModel : ViewModel() {
  private fun showListPopulated(filmList : MutableList<Film>){
   setTypeFilm(filmList)
   listOfFilms = filmList
-  moviesAdapter = MoviesAdapter(filmList)
+  moviesAdapter = MoviesAdapter(filmList,fragment.activity)
   fragment.listMovies.adapter = moviesAdapter
   FilmRepository().addListOfMovies(filmList)
   fragment.progressListUpdate.visibility = View.GONE
@@ -81,10 +76,6 @@ class PopulatedViewModel : ViewModel() {
   filmList.forEach {
    it.type = POPULATED
   }
- }
-
- private fun getQueryList(query: String){
-  Log.d(TAG,"movie: ${FilmRepository().searchAll()}")
  }
 
 

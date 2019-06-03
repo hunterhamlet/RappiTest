@@ -42,9 +42,6 @@ class UpcomingViewModel : ViewModel() {
   disposable.dispose()
  }
 
- fun searchMovies(searchWord : String){
-  getQueryList(searchWord)
- }
 
  fun filterMovie(title : String){
   val listFilteredFilm =
@@ -52,7 +49,6 @@ class UpcomingViewModel : ViewModel() {
   moviesAdapter.filteredList(listFilteredFilm.toMutableList())
 
  }
-
 
  private fun getPopulatedMovies(){
   disposable = moviesApi.getUpcommingMovies(apiHeadersMap())
@@ -68,7 +64,7 @@ class UpcomingViewModel : ViewModel() {
  private fun showListUpcoming(filmList : MutableList<Film>){
   setTypeFilm(filmList)
   listOfFilms = filmList
-  moviesAdapter = MoviesAdapter(filmList)
+  moviesAdapter = MoviesAdapter(filmList,fragment.activity)
   fragment.listMovies.adapter = moviesAdapter
   FilmRepository().addListOfMovies(filmList)
   fragment.progressListUpdate.visibility = View.GONE
@@ -85,8 +81,5 @@ class UpcomingViewModel : ViewModel() {
   }
  }
 
- private fun getQueryList(query: String){
-  Log.d(TAG,"movie: ${FilmRepository().searchAll()}")
- }
 
 }

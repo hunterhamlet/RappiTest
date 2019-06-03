@@ -1,11 +1,15 @@
 package mx.com.rappitest.view.adapter
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,17 +17,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.row_movies.view.*
 import mx.com.rappitest.R
 import mx.com.rappitest.model.Film
+import mx.com.rappitest.util.FILM_ID
+import mx.com.rappitest.view.ui.FilmDetailActivity
 
-class MoviesAdapter(private var listMovies : MutableList<Film>) :
+class MoviesAdapter(private var listMovies : MutableList<Film>, private val activity: FragmentActivity?) :
  RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
  //var
 
-
  //fun override
  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
   return MoviesViewHolder(LayoutInflater.from(parent.context)
-   .inflate(R.layout.row_movies, parent, false))
+   .inflate(R.layout.row_movies, parent, false),activity)
  }
 
  override fun getItemCount(): Int {
@@ -50,11 +55,12 @@ class MoviesAdapter(private var listMovies : MutableList<Film>) :
 
 
  //inner class
- class MoviesViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+ class MoviesViewHolder(itemView : View,val activity: FragmentActivity?) : RecyclerView.ViewHolder(itemView) {
+
 
   //onBindView
   fun bindView(movie : Film){
-   itemView.titleMovie.text = "Titlte : ${movie.title}"
+   itemView.titleMovie.text = "Title : ${movie.title}"
    itemView.originalTitleMovie.text =  "Original title: ${movie.originalTitle}"
    itemView.yearMovie.text = "Date: ${movie.releaseDate}"
    Glide.with(itemView)
@@ -65,7 +71,9 @@ class MoviesAdapter(private var listMovies : MutableList<Film>) :
     .into(itemView.imageMovie)
 
    itemView.movieContent.setOnClickListener {
-    Toast.makeText(itemView.context, "title: ${movie.title}", Toast.LENGTH_SHORT).show()
+    val intent = Intent(activity, FilmDetailActivity::class.java)
+    intent.putExtra(FILM_ID,movie.id)
+    activity?.startActivity(intent)
    }
   }
 
@@ -94,6 +102,7 @@ class MoviesAdapter(private var listMovies : MutableList<Film>) :
   }
 
  }
+
 
 
 

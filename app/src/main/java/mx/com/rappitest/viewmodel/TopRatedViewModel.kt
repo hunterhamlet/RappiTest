@@ -67,7 +67,7 @@ class TopRatedViewModel : ViewModel() {
  private fun showListTopRated(filmList : MutableList<Film>){
   setTypeFilm(filmList)
   listOfFilms = filmList
-  moviesAdapter = MoviesAdapter(filmList)
+  moviesAdapter = MoviesAdapter(filmList,fragment.activity)
   fragment.listMovies.adapter = moviesAdapter
   FilmRepository().addListOfMovies(filmList)
   fragment.progressListUpdate.visibility = View.GONE
